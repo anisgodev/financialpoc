@@ -1,0 +1,115 @@
+<div>
+  <h2 id="page-heading" data-cy="BusinessModelHeading">
+    <span jhiTranslate="accpdesignerApp.businessModel.home.title">Business Models</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="accpdesignerApp.businessModel.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-business-model"
+        [routerLink]="['/business-model/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="accpdesignerApp.businessModel.home.createLabel"> Create a new Business Model </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="businessModels?.length === 0">
+    <span jhiTranslate="accpdesignerApp.businessModel.home.notFound">No Business Models found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="businessModels && businessModels.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="global.field.id">ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="name">
+            <div class="d-flex">
+              <span jhiTranslate="accpdesignerApp.businessModel.name">Name</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="type">
+            <div class="d-flex">
+              <span jhiTranslate="accpdesignerApp.businessModel.type">Type</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="category">
+            <div class="d-flex">
+              <span jhiTranslate="accpdesignerApp.businessModel.category">Category</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="relatedBusinessModels.id">
+            <div class="d-flex">
+              <span jhiTranslate="accpdesignerApp.businessModel.relatedBusinessModels">Related Business Models</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let businessModel of businessModels; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/business-model', businessModel.id, 'view']">{{ businessModel.id }}</a>
+          </td>
+          <td>{{ businessModel.name }}</td>
+          <td jhiTranslate="{{ 'accpdesignerApp.ParameterType.' + businessModel.type }}">{{ businessModel.type }}</td>
+          <td jhiTranslate="{{ 'accpdesignerApp.BusinessProcess.' + businessModel.category }}">{{ businessModel.category }}</td>
+          <td>
+            <div *ngIf="businessModel.relatedBusinessModels">
+              <a [routerLink]="['/business-model', businessModel.relatedBusinessModels.id, 'view']">{{
+                businessModel.relatedBusinessModels.id
+              }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/business-model', businessModel.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/business-model', businessModel.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(businessModel)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

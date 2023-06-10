@@ -1,0 +1,72 @@
+application {
+  config {
+    applicationType gateway
+    baseName accpdesigner
+    packageName com.bnppf.alphacredit.creditproductdesigner
+    databaseType mongodb
+    prodDatabaseType mongodb
+    buildTool maven
+  }
+  entities *
+}
+
+entity BusinessModel {
+  name String required
+  type ParameterType required
+  category BusinessProcess required
+}
+
+enum ParameterType {
+  CREDIT_PRODUCT
+  BOOLEAN
+  NUMERIC
+  STRING
+  RANGE
+  OBJECT
+}
+
+entity BusinessRule {
+  name String required
+  businessProcess BusinessProcess required
+}
+
+entity BusinessRuleCondition {
+	field String required
+    value String required
+    operator OperatorEnum required
+}
+
+enum OperatorEnum {
+	NOT_EQUAL_TO("NOT_EQUAL_TO")
+    EQUAL_TO("EQUAL_TO")
+    GREATER_THAN("GREATER_THAN")
+    LESS_THAN("LESS_THAN")
+    GREATER_THAN_OR_EQUAL_TO("GREATER_THAN_OR_EQUAL_TO")
+    LESS_THAN_OR_EQUAL_TO("LESS_THAN_OR_EQUAL_TO")
+}
+
+enum BusinessProcess{
+    SCORING
+    GRANTING
+}
+
+entity CreditProduct {
+  name String required
+}
+
+entity CreditProductInstance {
+  name String required
+}
+
+entity Simulation {
+  name String required
+}
+
+relationship ManyToOne {
+  CreditProduct{businessModels} to BusinessModel
+  BusinessModel{relatedBusinessModels} to BusinessModel
+  CreditProduct{rules} to BusinessRule
+  Simulation{creditProduct} to CreditProduct
+  CreditProductInstance{simulations} to Simulation
+  BusinessRule{conditions} to BusinessRuleCondition
+}

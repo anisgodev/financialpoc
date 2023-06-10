@@ -1,0 +1,44 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="businessRuleCondition">
+      <h2 data-cy="businessRuleConditionDetailsHeading">
+        <span jhiTranslate="accpdesignerApp.businessRuleCondition.detail.title">Business Rule Condition</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ businessRuleCondition.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="accpdesignerApp.businessRuleCondition.field">Field</span></dt>
+        <dd>
+          <span>{{ businessRuleCondition.field }}</span>
+        </dd>
+        <dt><span jhiTranslate="accpdesignerApp.businessRuleCondition.value">Value</span></dt>
+        <dd>
+          <span>{{ businessRuleCondition.value }}</span>
+        </dd>
+        <dt><span jhiTranslate="accpdesignerApp.businessRuleCondition.operator">Operator</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'accpdesignerApp.OperatorEnum.' + businessRuleCondition.operator }}">{{
+            businessRuleCondition.operator
+          }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/business-rule-condition', businessRuleCondition.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

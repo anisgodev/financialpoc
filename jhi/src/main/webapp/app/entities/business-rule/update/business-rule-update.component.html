@@ -1,0 +1,100 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-business-rule-heading"
+        data-cy="BusinessRuleCreateUpdateHeading"
+        jhiTranslate="accpdesignerApp.businessRule.home.createOrEditLabel"
+      >
+        Create or edit a Business Rule
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="text" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="accpdesignerApp.businessRule.name" for="field_name">Name</label>
+          <input type="text" class="form-control" name="name" id="field_name" data-cy="name" formControlName="name" />
+          <div *ngIf="editForm.get('name')!.invalid && (editForm.get('name')!.dirty || editForm.get('name')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('name')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="accpdesignerApp.businessRule.businessProcess" for="field_businessProcess"
+            >Business Process</label
+          >
+          <select
+            class="form-control"
+            name="businessProcess"
+            formControlName="businessProcess"
+            id="field_businessProcess"
+            data-cy="businessProcess"
+          >
+            <option [ngValue]="null">{{ 'accpdesignerApp.BusinessProcess.null' | translate }}</option>
+            <option *ngFor="let businessProcess of businessProcessValues" [value]="businessProcess">
+              {{ 'accpdesignerApp.BusinessProcess.' + businessProcess | translate }}
+            </option>
+          </select>
+          <div
+            *ngIf="
+              editForm.get('businessProcess')!.invalid &&
+              (editForm.get('businessProcess')!.dirty || editForm.get('businessProcess')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('businessProcess')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="accpdesignerApp.businessRule.conditions" for="field_conditions">Conditions</label>
+          <select
+            class="form-control"
+            id="field_conditions"
+            data-cy="conditions"
+            name="conditions"
+            formControlName="conditions"
+            [compareWith]="compareBusinessRuleCondition"
+          >
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="businessRuleConditionOption"
+              *ngFor="let businessRuleConditionOption of businessRuleConditionsSharedCollection"
+            >
+              {{ businessRuleConditionOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

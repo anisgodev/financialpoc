@@ -1,0 +1,13 @@
+export enum ParameterType {
+  CREDIT_PRODUCT = 'CREDIT_PRODUCT',
+
+  BOOLEAN = 'BOOLEAN',
+
+  NUMERIC = 'NUMERIC',
+
+  STRING = 'STRING',
+
+  RANGE = 'RANGE',
+
+  OBJECT = 'OBJECT',
+}

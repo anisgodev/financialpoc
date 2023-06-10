@@ -1,0 +1,28 @@
+{
+  "applications": ["accpdesigner"],
+  "changelogDate": "20230610090904",
+  "databaseType": "mongodb",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "simulation",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Simulation",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "creditProduct",
+      "relationshipName": "creditProduct",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "no"
+}

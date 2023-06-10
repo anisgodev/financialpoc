@@ -1,0 +1,26 @@
+{
+  "accpdesignerApp": {
+    "businessRuleCondition": {
+      "home": {
+        "title": "Business Rule Conditions",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Business Rule Condition",
+        "createOrEditLabel": "Create or edit a Business Rule Condition",
+        "notFound": "No Business Rule Conditions found"
+      },
+      "created": "A new Business Rule Condition is created with identifier {{ param }}",
+      "updated": "A Business Rule Condition is updated with identifier {{ param }}",
+      "deleted": "A Business Rule Condition is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Business Rule Condition {{ id }}?"
+      },
+      "detail": {
+        "title": "Business Rule Condition"
+      },
+      "id": "ID",
+      "field": "Field",
+      "value": "Value",
+      "operator": "Operator"
+    }
+  }
+}

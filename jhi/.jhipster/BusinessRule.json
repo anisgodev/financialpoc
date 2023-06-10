@@ -1,0 +1,34 @@
+{
+  "applications": ["accpdesigner"],
+  "changelogDate": "20230610090504",
+  "databaseType": "mongodb",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "business_rule",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "businessProcess",
+      "fieldType": "BusinessProcess",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "SCORING,GRANTING"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "BusinessRule",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "businessRuleCondition",
+      "relationshipName": "conditions",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "no"
+}

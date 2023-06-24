@@ -1,0 +1,37 @@
+{
+  "applications": ["myApp"],
+  "changelogDate": "20230624215034",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "product_item_type",
+  "fields": [
+    {
+      "fieldName": "productItemCategory",
+      "fieldType": "ProductItemCategoryEnum",
+      "fieldValues": "PRODUCT,SERVICE"
+    },
+    {
+      "fieldName": "typeName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "stateEnum",
+      "fieldType": "StateEnum",
+      "fieldValues": "ENABLED,DISABLED,PENDING,EXPIRED,RESTRICTED,UPCOMING,BETA,CUSTOMIZABLE,FIXED"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "ProductItemType",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "productRepositoryItem",
+      "otherEntityRelationshipName": "productItemType",
+      "relationshipName": "productRepositoryItem",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "no"
+}

@@ -1,0 +1,46 @@
+{
+  "applications": ["myApp"],
+  "changelogDate": "20230624214434",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "eligibility_condition",
+  "fields": [
+    {
+      "fieldName": "applyLevelEnum",
+      "fieldType": "ApplyLevelEnum",
+      "fieldValues": "ITEM,FEATURE"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "EligibilityCondition",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "condition",
+      "otherEntityRelationshipName": "eligibilityCondition",
+      "relationshipName": "condition",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "itemFeature",
+      "otherEntityRelationshipName": "eligibilityCondition",
+      "relationshipName": "itemFeature",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "productRepositoryItem",
+      "otherEntityRelationshipName": "eligibilityCondition",
+      "relationshipName": "productRepositoryItem",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "itemGroup",
+      "otherEntityRelationshipName": "eligibilityCondition",
+      "relationshipName": "itemGroup",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "no"
+}

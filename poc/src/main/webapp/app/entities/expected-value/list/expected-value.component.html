@@ -1,0 +1,95 @@
+<div>
+  <h2 id="page-heading" data-cy="ExpectedValueHeading">
+    <span jhiTranslate="myApp.expectedValue.home.title">Expected Values</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="myApp.expectedValue.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-expected-value"
+        [routerLink]="['/expected-value/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="myApp.expectedValue.home.createLabel"> Create a new Expected Value </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="expectedValues?.length === 0">
+    <span jhiTranslate="myApp.expectedValue.home.notFound">No Expected Values found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="expectedValues && expectedValues.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="global.field.id">ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="parameterTypeEnum">
+            <div class="d-flex">
+              <span jhiTranslate="myApp.expectedValue.parameterTypeEnum">Parameter Type Enum</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="value">
+            <div class="d-flex">
+              <span jhiTranslate="myApp.expectedValue.value">Value</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let expectedValue of expectedValues; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/expected-value', expectedValue.id, 'view']">{{ expectedValue.id }}</a>
+          </td>
+          <td jhiTranslate="{{ 'myApp.ParameterTypeEnum.' + expectedValue.parameterTypeEnum }}">{{ expectedValue.parameterTypeEnum }}</td>
+          <td>{{ expectedValue.value }}</td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/expected-value', expectedValue.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/expected-value', expectedValue.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(expectedValue)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

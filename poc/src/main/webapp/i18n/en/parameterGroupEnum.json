@@ -1,0 +1,11 @@
+{
+  "myApp": {
+    "ParameterGroupEnum": {
+      "null": "",
+      "NUMERIC": "NUMERIC",
+      "TEXT": "TEXT",
+      "BIT": "BIT",
+      "ALPHANUMERIC": "ALPHANUMERIC"
+    }
+  }
+}

@@ -1,0 +1,36 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="itemGroup">
+      <h2 data-cy="itemGroupDetailsHeading"><span jhiTranslate="myApp.itemGroup.detail.title">Item Group</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ itemGroup.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="myApp.itemGroup.itemGroupName">Item Group Name</span></dt>
+        <dd>
+          <span>{{ itemGroup.itemGroupName }}</span>
+        </dd>
+        <dt><span jhiTranslate="myApp.itemGroup.itemGroupDescription">Item Group Description</span></dt>
+        <dd>
+          <span>{{ itemGroup.itemGroupDescription }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/item-group', itemGroup.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

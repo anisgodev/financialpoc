@@ -1,0 +1,11 @@
+{
+  "myApp": {
+    "ParameterStateEnum": {
+      "null": "",
+      "ACTIVE": "ACTIVE",
+      "VALIDATED": "VALIDATED",
+      "INVALIDATED": "INVALIDATED",
+      "DRAFT": "DRAFT"
+    }
+  }
+}

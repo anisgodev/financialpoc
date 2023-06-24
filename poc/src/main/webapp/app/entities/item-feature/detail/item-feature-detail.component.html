@@ -1,0 +1,44 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="itemFeature">
+      <h2 data-cy="itemFeatureDetailsHeading"><span jhiTranslate="myApp.itemFeature.detail.title">Item Feature</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ itemFeature.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="myApp.itemFeature.featureName">Feature Name</span></dt>
+        <dd>
+          <span>{{ itemFeature.featureName }}</span>
+        </dd>
+        <dt><span jhiTranslate="myApp.itemFeature.featureLabel">Feature Label</span></dt>
+        <dd>
+          <span>{{ itemFeature.featureLabel }}</span>
+        </dd>
+        <dt><span jhiTranslate="myApp.itemFeature.productRepositoryItem">Product Repository Item</span></dt>
+        <dd>
+          <div *ngIf="itemFeature.productRepositoryItem">
+            <a [routerLink]="['/product-repository-item', itemFeature.productRepositoryItem.id, 'view']">{{
+              itemFeature.productRepositoryItem.id
+            }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/item-feature', itemFeature.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

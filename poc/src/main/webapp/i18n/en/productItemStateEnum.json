@@ -1,0 +1,22 @@
+{
+  "myApp": {
+    "ProductItemStateEnum": {
+      "null": "",
+      "Active": "Active",
+      "INACTIVE": "INACTIVE",
+      "EXPIRED": "EXPIRED",
+      "RESTRICTED": "RESTRICTED",
+      "DISCONTINUED": "DISCONTINUED",
+      "CUSTOMIZABLE": "CUSTOMIZABLE",
+      "FIXED": "FIXED",
+      "VARIABLE": "VARIABLE",
+      "PROMOTIONAL": "PROMOTIONAL",
+      "BUNDLE": "BUNDLE",
+      "EXCLUSIVE": "EXCLUSIVE",
+      "UPGRADABLE": "UPGRADABLE",
+      "CANCELABLE": "CANCELABLE",
+      "RENEWABLE": "RENEWABLE",
+      "BETA": "BETA"
+    }
+  }
+}

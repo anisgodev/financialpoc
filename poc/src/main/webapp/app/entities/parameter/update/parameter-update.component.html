@@ -1,0 +1,113 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-parameter-heading" data-cy="ParameterCreateUpdateHeading" jhiTranslate="myApp.parameter.home.createOrEditLabel">
+        Create or edit a Parameter
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="myApp.parameter.type" for="field_type">Type</label>
+          <select class="form-control" name="type" formControlName="type" id="field_type" data-cy="type">
+            <option [ngValue]="null">{{ 'myApp.ParameterTypeEnum.null' | translate }}</option>
+            <option *ngFor="let parameterTypeEnum of parameterTypeEnumValues" [value]="parameterTypeEnum">
+              {{ 'myApp.ParameterTypeEnum.' + parameterTypeEnum | translate }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="myApp.parameter.parameterStateEnum" for="field_parameterStateEnum"
+            >Parameter State Enum</label
+          >
+          <select
+            class="form-control"
+            name="parameterStateEnum"
+            formControlName="parameterStateEnum"
+            id="field_parameterStateEnum"
+            data-cy="parameterStateEnum"
+          >
+            <option [ngValue]="null">{{ 'myApp.ParameterStateEnum.null' | translate }}</option>
+            <option *ngFor="let parameterStateEnum of parameterStateEnumValues" [value]="parameterStateEnum">
+              {{ 'myApp.ParameterStateEnum.' + parameterStateEnum | translate }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="myApp.parameter.parameterDefType" for="field_parameterDefType">Parameter Def Type</label>
+          <select
+            class="form-control"
+            id="field_parameterDefType"
+            data-cy="parameterDefType"
+            name="parameterDefType"
+            formControlName="parameterDefType"
+            [compareWith]="compareParameterDefType"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="parameterDefTypeOption" *ngFor="let parameterDefTypeOption of parameterDefTypesSharedCollection">
+              {{ parameterDefTypeOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="myApp.parameter.expectedValue" for="field_expectedValue">Expected Value</label>
+          <select
+            class="form-control"
+            id="field_expectedValue"
+            data-cy="expectedValue"
+            name="expectedValue"
+            formControlName="expectedValue"
+            [compareWith]="compareExpectedValue"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="expectedValueOption" *ngFor="let expectedValueOption of expectedValuesSharedCollection">
+              {{ expectedValueOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="myApp.parameter.itemFeature" for="field_itemFeature">Item Feature</label>
+          <select
+            class="form-control"
+            id="field_itemFeature"
+            data-cy="itemFeature"
+            name="itemFeature"
+            formControlName="itemFeature"
+            [compareWith]="compareItemFeature"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="itemFeatureOption" *ngFor="let itemFeatureOption of itemFeaturesSharedCollection">
+              {{ itemFeatureOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

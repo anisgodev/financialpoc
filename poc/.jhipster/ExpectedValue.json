@@ -1,0 +1,32 @@
+{
+  "applications": ["myApp"],
+  "changelogDate": "20230624214734",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "expected_value",
+  "fields": [
+    {
+      "fieldName": "parameterTypeEnum",
+      "fieldType": "ParameterTypeEnum",
+      "fieldValues": "BIGDECIMAL,BIGINTEGER,BOOLEAN,BYTE,CHARACTER,Date,DOUBLE,FLOAT,INTEGER,LOCALDATE,LOCALTIME,LOCALDATETIME,LONG,OFFSETDATETIME,SHORT,STRING"
+    },
+    {
+      "fieldName": "value",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "ExpectedValue",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "parameter",
+      "otherEntityRelationshipName": "expectedValue",
+      "relationshipName": "parameter",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "no"
+}

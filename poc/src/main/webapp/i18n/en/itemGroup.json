@@ -1,0 +1,26 @@
+{
+  "myApp": {
+    "itemGroup": {
+      "home": {
+        "title": "Item Groups",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Item Group",
+        "createOrEditLabel": "Create or edit a Item Group",
+        "notFound": "No Item Groups found"
+      },
+      "created": "A new Item Group is created with identifier {{ param }}",
+      "updated": "A Item Group is updated with identifier {{ param }}",
+      "deleted": "A Item Group is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Item Group {{ id }}?"
+      },
+      "detail": {
+        "title": "Item Group"
+      },
+      "id": "ID",
+      "itemGroupName": "Item Group Name",
+      "itemGroupDescription": "Item Group Description",
+      "eligibilityCondition": "Eligibility Condition"
+    }
+  }
+}

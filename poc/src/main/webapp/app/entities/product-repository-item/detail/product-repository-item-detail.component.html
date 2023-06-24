@@ -1,0 +1,58 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="productRepositoryItem">
+      <h2 data-cy="productRepositoryItemDetailsHeading">
+        <span jhiTranslate="myApp.productRepositoryItem.detail.title">Product Repository Item</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ productRepositoryItem.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="myApp.productRepositoryItem.name">Name</span></dt>
+        <dd>
+          <span>{{ productRepositoryItem.name }}</span>
+        </dd>
+        <dt><span jhiTranslate="myApp.productRepositoryItem.description">Description</span></dt>
+        <dd>
+          <span>{{ productRepositoryItem.description }}</span>
+        </dd>
+        <dt><span jhiTranslate="myApp.productRepositoryItem.productItemCategoryEnum">Product Item Category Enum</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'myApp.ProductItemCategoryEnum.' + productRepositoryItem.productItemCategoryEnum }}">{{
+            productRepositoryItem.productItemCategoryEnum
+          }}</span>
+        </dd>
+        <dt><span jhiTranslate="myApp.productRepositoryItem.itemStage">Item Stage</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'myApp.ProductItemStateEnum.' + productRepositoryItem.itemStage }}">{{
+            productRepositoryItem.itemStage
+          }}</span>
+        </dd>
+        <dt><span jhiTranslate="myApp.productRepositoryItem.productItemType">Product Item Type</span></dt>
+        <dd>
+          <div *ngIf="productRepositoryItem.productItemType">
+            <a [routerLink]="['/product-item-type', productRepositoryItem.productItemType.id, 'view']">{{
+              productRepositoryItem.productItemType.id
+            }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/product-repository-item', productRepositoryItem.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

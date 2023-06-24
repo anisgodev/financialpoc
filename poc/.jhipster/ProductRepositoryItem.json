@@ -1,0 +1,53 @@
+{
+  "applications": ["myApp"],
+  "changelogDate": "20230624215234",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "product_repository_item",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "productItemCategoryEnum",
+      "fieldType": "ProductItemCategoryEnum",
+      "fieldValues": "PRODUCT,SERVICE"
+    },
+    {
+      "fieldName": "itemStage",
+      "fieldType": "ProductItemStateEnum",
+      "fieldValues": "Active,INACTIVE,EXPIRED,RESTRICTED,DISCONTINUED,CUSTOMIZABLE,FIXED,VARIABLE,PROMOTIONAL,BUNDLE,EXCLUSIVE,UPGRADABLE,CANCELABLE,RENEWABLE,BETA"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "ProductRepositoryItem",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "eligibilityCondition",
+      "otherEntityRelationshipName": "productRepositoryItem",
+      "relationshipName": "eligibilityCondition",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "itemFeature",
+      "otherEntityRelationshipName": "productRepositoryItem",
+      "relationshipName": "itemFeature",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "productItemType",
+      "otherEntityRelationshipName": "productRepositoryItem",
+      "relationshipName": "productItemType",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "no"
+}

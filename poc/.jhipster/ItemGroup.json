@@ -1,0 +1,31 @@
+{
+  "applications": ["myApp"],
+  "changelogDate": "20230624215134",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "item_group",
+  "fields": [
+    {
+      "fieldName": "itemGroupName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "itemGroupDescription",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "ItemGroup",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "eligibilityCondition",
+      "otherEntityRelationshipName": "itemGroup",
+      "relationshipName": "eligibilityCondition",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "no"
+}

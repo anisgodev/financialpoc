@@ -1,0 +1,27 @@
+{
+  "myApp": {
+    "parameterDefType": {
+      "home": {
+        "title": "Parameter Def Types",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Parameter Def Type",
+        "createOrEditLabel": "Create or edit a Parameter Def Type",
+        "notFound": "No Parameter Def Types found"
+      },
+      "created": "A new Parameter Def Type is created with identifier {{ param }}",
+      "updated": "A Parameter Def Type is updated with identifier {{ param }}",
+      "deleted": "A Parameter Def Type is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Parameter Def Type {{ id }}?"
+      },
+      "detail": {
+        "title": "Parameter Def Type"
+      },
+      "id": "ID",
+      "fieldName": "Field Name",
+      "label": "Label",
+      "parameterGroupEnum": "Parameter Group Enum",
+      "parameter": "Parameter"
+    }
+  }
+}

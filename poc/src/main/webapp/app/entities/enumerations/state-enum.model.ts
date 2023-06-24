@@ -1,0 +1,19 @@
+export enum StateEnum {
+  ENABLED = 'ENABLED',
+
+  DISABLED = 'DISABLED',
+
+  PENDING = 'PENDING',
+
+  EXPIRED = 'EXPIRED',
+
+  RESTRICTED = 'RESTRICTED',
+
+  UPCOMING = 'UPCOMING',
+
+  BETA = 'BETA',
+
+  CUSTOMIZABLE = 'CUSTOMIZABLE',
+
+  FIXED = 'FIXED',
+}

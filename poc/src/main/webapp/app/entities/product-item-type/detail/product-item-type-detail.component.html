@@ -1,0 +1,42 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="productItemType">
+      <h2 data-cy="productItemTypeDetailsHeading"><span jhiTranslate="myApp.productItemType.detail.title">Product Item Type</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ productItemType.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="myApp.productItemType.productItemCategory">Product Item Category</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'myApp.ProductItemCategoryEnum.' + productItemType.productItemCategory }}">{{
+            productItemType.productItemCategory
+          }}</span>
+        </dd>
+        <dt><span jhiTranslate="myApp.productItemType.typeName">Type Name</span></dt>
+        <dd>
+          <span>{{ productItemType.typeName }}</span>
+        </dd>
+        <dt><span jhiTranslate="myApp.productItemType.stateEnum">State Enum</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'myApp.StateEnum.' + productItemType.stateEnum }}">{{ productItemType.stateEnum }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/product-item-type', productItemType.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

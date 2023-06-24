@@ -1,0 +1,155 @@
+
+application {
+  config {
+    baseName myApp,
+    applicationType monolith,
+    packageName com.bnppf.alphacredit.repositories.productrepository,
+    authenticationType jwt,
+    devDatabaseType h2Disk,
+    prodDatabaseType mssql,
+    clientFramework angular
+  }
+  entities *
+}
+
+enum ApplyLevelEnum {
+	ITEM,
+  	FEATURE
+}
+entity EligibilityCondition {
+ applyLevelEnum ApplyLevelEnum ,
+ 
+}
+
+entity Condition {
+	operator String,
+}
+enum ParameterTypeEnum {
+  BIGDECIMAL,
+  BIGINTEGER,
+  BOOLEAN,
+  BYTE,
+  CHARACTER,
+  Date,
+  DOUBLE,
+  FLOAT,
+  INTEGER,
+  LOCALDATE,
+  LOCALTIME,
+  LOCALDATETIME,
+  LONG,
+  OFFSETDATETIME,
+  SHORT,
+  STRING
+}
+
+entity ParameterDefType {
+  fieldName String 
+  label String 
+  parameterGroupEnum ParameterGroupEnum 
+}
+
+enum ParameterGroupEnum {
+  NUMERIC,
+  TEXT,
+  BIT,
+  ALPHANUMERIC
+}
+
+entity ExpectedValue {
+  parameterTypeEnum ParameterTypeEnum,
+  value String 
+}
+
+enum ParameterStateEnum {
+  ACTIVE,
+  VALIDATED,
+  INVALIDATED,
+  DRAFT
+}
+entity Parameter {
+	type ParameterTypeEnum ,
+   	parameterStateEnum ParameterStateEnum 
+}
+
+entity ItemFeature {
+  featureName String,
+  featureLabel String
+}
+
+enum ProductItemCategoryEnum {
+  PRODUCT,
+  SERVICE
+}
+
+entity  ProductItemType {
+  productItemCategory  ProductItemCategoryEnum, 
+  typeName String,
+  stateEnum StateEnum
+}
+
+enum StateEnum {
+  ENABLED,
+  DISABLED,
+  PENDING,
+  EXPIRED,
+  RESTRICTED,
+  UPCOMING,
+  BETA,
+  CUSTOMIZABLE,
+  FIXED
+}
+
+enum ProductItemStateEnum {
+  Active,
+  INACTIVE,
+  EXPIRED,
+  RESTRICTED,
+  DISCONTINUED,
+  CUSTOMIZABLE,
+  FIXED,
+  VARIABLE,
+  PROMOTIONAL,
+  BUNDLE,
+  EXCLUSIVE,
+  UPGRADABLE,
+  CANCELABLE,
+  RENEWABLE,
+  BETA
+}
+
+entity ProductItemType {
+  productItemCategory  ProductItemCategoryEnum,
+  typeName String,
+  stateEnum StateEnum
+}
+
+entity ItemGroup {
+  itemGroupName String, 
+  itemGroupDescription String 
+}
+entity ProductRepositoryItem {
+  name String, 
+  description String, 
+  productItemCategoryEnum ProductItemCategoryEnum,
+  itemStage ProductItemStateEnum,
+}
+
+relationship OneToMany {
+  ItemFeature to Parameter
+  ItemFeature to EligibilityCondition
+  ProductRepositoryItem to EligibilityCondition
+  ProductRepositoryItem to ItemFeature
+  ItemGroup to EligibilityCondition
+}
+
+relationship ManyToOne {
+Parameter to ParameterDefType
+Parameter to ExpectedValue
+Condition to Parameter
+EligibilityCondition to Condition
+ProductRepositoryItem to ProductItemType
+}
+
+
+    

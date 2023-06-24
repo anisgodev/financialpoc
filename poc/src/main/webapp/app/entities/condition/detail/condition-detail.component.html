@@ -1,0 +1,38 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="condition">
+      <h2 data-cy="conditionDetailsHeading"><span jhiTranslate="myApp.condition.detail.title">Condition</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ condition.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="myApp.condition.operator">Operator</span></dt>
+        <dd>
+          <span>{{ condition.operator }}</span>
+        </dd>
+        <dt><span jhiTranslate="myApp.condition.parameter">Parameter</span></dt>
+        <dd>
+          <div *ngIf="condition.parameter">
+            <a [routerLink]="['/parameter', condition.parameter.id, 'view']">{{ condition.parameter.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/condition', condition.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

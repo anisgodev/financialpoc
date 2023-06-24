@@ -1,0 +1,125 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-eligibility-condition-heading"
+        data-cy="EligibilityConditionCreateUpdateHeading"
+        jhiTranslate="myApp.eligibilityCondition.home.createOrEditLabel"
+      >
+        Create or edit a Eligibility Condition
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="myApp.eligibilityCondition.applyLevelEnum" for="field_applyLevelEnum"
+            >Apply Level Enum</label
+          >
+          <select
+            class="form-control"
+            name="applyLevelEnum"
+            formControlName="applyLevelEnum"
+            id="field_applyLevelEnum"
+            data-cy="applyLevelEnum"
+          >
+            <option [ngValue]="null">{{ 'myApp.ApplyLevelEnum.null' | translate }}</option>
+            <option *ngFor="let applyLevelEnum of applyLevelEnumValues" [value]="applyLevelEnum">
+              {{ 'myApp.ApplyLevelEnum.' + applyLevelEnum | translate }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="myApp.eligibilityCondition.condition" for="field_condition">Condition</label>
+          <select
+            class="form-control"
+            id="field_condition"
+            data-cy="condition"
+            name="condition"
+            formControlName="condition"
+            [compareWith]="compareCondition"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="conditionOption" *ngFor="let conditionOption of conditionsSharedCollection">{{ conditionOption.id }}</option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="myApp.eligibilityCondition.itemFeature" for="field_itemFeature">Item Feature</label>
+          <select
+            class="form-control"
+            id="field_itemFeature"
+            data-cy="itemFeature"
+            name="itemFeature"
+            formControlName="itemFeature"
+            [compareWith]="compareItemFeature"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="itemFeatureOption" *ngFor="let itemFeatureOption of itemFeaturesSharedCollection">
+              {{ itemFeatureOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="myApp.eligibilityCondition.productRepositoryItem" for="field_productRepositoryItem"
+            >Product Repository Item</label
+          >
+          <select
+            class="form-control"
+            id="field_productRepositoryItem"
+            data-cy="productRepositoryItem"
+            name="productRepositoryItem"
+            formControlName="productRepositoryItem"
+            [compareWith]="compareProductRepositoryItem"
+          >
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="productRepositoryItemOption"
+              *ngFor="let productRepositoryItemOption of productRepositoryItemsSharedCollection"
+            >
+              {{ productRepositoryItemOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="myApp.eligibilityCondition.itemGroup" for="field_itemGroup">Item Group</label>
+          <select
+            class="form-control"
+            id="field_itemGroup"
+            data-cy="itemGroup"
+            name="itemGroup"
+            formControlName="itemGroup"
+            [compareWith]="compareItemGroup"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="itemGroupOption" *ngFor="let itemGroupOption of itemGroupsSharedCollection">{{ itemGroupOption.id }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

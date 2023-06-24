@@ -1,0 +1,28 @@
+{
+  "myApp": {
+    "itemFeature": {
+      "home": {
+        "title": "Item Features",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Item Feature",
+        "createOrEditLabel": "Create or edit a Item Feature",
+        "notFound": "No Item Features found"
+      },
+      "created": "A new Item Feature is created with identifier {{ param }}",
+      "updated": "A Item Feature is updated with identifier {{ param }}",
+      "deleted": "A Item Feature is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Item Feature {{ id }}?"
+      },
+      "detail": {
+        "title": "Item Feature"
+      },
+      "id": "ID",
+      "featureName": "Feature Name",
+      "featureLabel": "Feature Label",
+      "parameter": "Parameter",
+      "eligibilityCondition": "Eligibility Condition",
+      "productRepositoryItem": "Product Repository Item"
+    }
+  }
+}

@@ -1,0 +1,136 @@
+<div>
+  <h2 id="page-heading" data-cy="EligibilityConditionHeading">
+    <span jhiTranslate="myApp.eligibilityCondition.home.title">Eligibility Conditions</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="myApp.eligibilityCondition.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-eligibility-condition"
+        [routerLink]="['/eligibility-condition/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="myApp.eligibilityCondition.home.createLabel"> Create a new Eligibility Condition </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="eligibilityConditions?.length === 0">
+    <span jhiTranslate="myApp.eligibilityCondition.home.notFound">No Eligibility Conditions found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="eligibilityConditions && eligibilityConditions.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="global.field.id">ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="applyLevelEnum">
+            <div class="d-flex">
+              <span jhiTranslate="myApp.eligibilityCondition.applyLevelEnum">Apply Level Enum</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="condition.id">
+            <div class="d-flex">
+              <span jhiTranslate="myApp.eligibilityCondition.condition">Condition</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="itemFeature.id">
+            <div class="d-flex">
+              <span jhiTranslate="myApp.eligibilityCondition.itemFeature">Item Feature</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="productRepositoryItem.id">
+            <div class="d-flex">
+              <span jhiTranslate="myApp.eligibilityCondition.productRepositoryItem">Product Repository Item</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="itemGroup.id">
+            <div class="d-flex">
+              <span jhiTranslate="myApp.eligibilityCondition.itemGroup">Item Group</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let eligibilityCondition of eligibilityConditions; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/eligibility-condition', eligibilityCondition.id, 'view']">{{ eligibilityCondition.id }}</a>
+          </td>
+          <td jhiTranslate="{{ 'myApp.ApplyLevelEnum.' + eligibilityCondition.applyLevelEnum }}">
+            {{ eligibilityCondition.applyLevelEnum }}
+          </td>
+          <td>
+            <div *ngIf="eligibilityCondition.condition">
+              <a [routerLink]="['/condition', eligibilityCondition.condition.id, 'view']">{{ eligibilityCondition.condition.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="eligibilityCondition.itemFeature">
+              <a [routerLink]="['/item-feature', eligibilityCondition.itemFeature.id, 'view']">{{ eligibilityCondition.itemFeature.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="eligibilityCondition.productRepositoryItem">
+              <a [routerLink]="['/product-repository-item', eligibilityCondition.productRepositoryItem.id, 'view']">{{
+                eligibilityCondition.productRepositoryItem.id
+              }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="eligibilityCondition.itemGroup">
+              <a [routerLink]="['/item-group', eligibilityCondition.itemGroup.id, 'view']">{{ eligibilityCondition.itemGroup.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/eligibility-condition', eligibilityCondition.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/eligibility-condition', eligibilityCondition.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(eligibilityCondition)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,27 @@
+{
+  "myApp": {
+    "productItemType": {
+      "home": {
+        "title": "Product Item Types",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Product Item Type",
+        "createOrEditLabel": "Create or edit a Product Item Type",
+        "notFound": "No Product Item Types found"
+      },
+      "created": "A new Product Item Type is created with identifier {{ param }}",
+      "updated": "A Product Item Type is updated with identifier {{ param }}",
+      "deleted": "A Product Item Type is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Product Item Type {{ id }}?"
+      },
+      "detail": {
+        "title": "Product Item Type"
+      },
+      "id": "ID",
+      "productItemCategory": "Product Item Category",
+      "typeName": "Type Name",
+      "stateEnum": "State Enum",
+      "productRepositoryItem": "Product Repository Item"
+    }
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "applications": ["myApp"],
+  "changelogDate": "20230624214634",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "parameter_def_type",
+  "fields": [
+    {
+      "fieldName": "fieldName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "label",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "parameterGroupEnum",
+      "fieldType": "ParameterGroupEnum",
+      "fieldValues": "NUMERIC,TEXT,BIT,ALPHANUMERIC"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "ParameterDefType",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "parameter",
+      "otherEntityRelationshipName": "parameterDefType",
+      "relationshipName": "parameter",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "no"
+}

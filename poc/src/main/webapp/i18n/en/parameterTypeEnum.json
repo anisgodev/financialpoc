@@ -1,0 +1,23 @@
+{
+  "myApp": {
+    "ParameterTypeEnum": {
+      "null": "",
+      "BIGDECIMAL": "BIGDECIMAL",
+      "BIGINTEGER": "BIGINTEGER",
+      "BOOLEAN": "BOOLEAN",
+      "BYTE": "BYTE",
+      "CHARACTER": "CHARACTER",
+      "Date": "Date",
+      "DOUBLE": "DOUBLE",
+      "FLOAT": "FLOAT",
+      "INTEGER": "INTEGER",
+      "LOCALDATE": "LOCALDATE",
+      "LOCALTIME": "LOCALTIME",
+      "LOCALDATETIME": "LOCALDATETIME",
+      "LONG": "LONG",
+      "OFFSETDATETIME": "OFFSETDATETIME",
+      "SHORT": "SHORT",
+      "STRING": "STRING"
+    }
+  }
+}

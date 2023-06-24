@@ -1,0 +1,38 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="expectedValue">
+      <h2 data-cy="expectedValueDetailsHeading"><span jhiTranslate="myApp.expectedValue.detail.title">Expected Value</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ expectedValue.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="myApp.expectedValue.parameterTypeEnum">Parameter Type Enum</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'myApp.ParameterTypeEnum.' + expectedValue.parameterTypeEnum }}">{{
+            expectedValue.parameterTypeEnum
+          }}</span>
+        </dd>
+        <dt><span jhiTranslate="myApp.expectedValue.value">Value</span></dt>
+        <dd>
+          <span>{{ expectedValue.value }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/expected-value', expectedValue.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

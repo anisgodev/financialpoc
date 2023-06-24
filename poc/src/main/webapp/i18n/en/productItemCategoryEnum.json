@@ -1,0 +1,9 @@
+{
+  "myApp": {
+    "ProductItemCategoryEnum": {
+      "null": "",
+      "PRODUCT": "PRODUCT",
+      "SERVICE": "SERVICE"
+    }
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "applications": ["myApp"],
+  "changelogDate": "20230624214834",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "parameter",
+  "fields": [
+    {
+      "fieldName": "type",
+      "fieldType": "ParameterTypeEnum",
+      "fieldValues": "BIGDECIMAL,BIGINTEGER,BOOLEAN,BYTE,CHARACTER,Date,DOUBLE,FLOAT,INTEGER,LOCALDATE,LOCALTIME,LOCALDATETIME,LONG,OFFSETDATETIME,SHORT,STRING"
+    },
+    {
+      "fieldName": "parameterStateEnum",
+      "fieldType": "ParameterStateEnum",
+      "fieldValues": "ACTIVE,VALIDATED,INVALIDATED,DRAFT"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Parameter",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "parameterDefType",
+      "otherEntityRelationshipName": "parameter",
+      "relationshipName": "parameterDefType",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "expectedValue",
+      "otherEntityRelationshipName": "parameter",
+      "relationshipName": "expectedValue",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "itemFeature",
+      "otherEntityRelationshipName": "parameter",
+      "relationshipName": "itemFeature",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "condition",
+      "otherEntityRelationshipName": "parameter",
+      "relationshipName": "condition",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "no"
+}

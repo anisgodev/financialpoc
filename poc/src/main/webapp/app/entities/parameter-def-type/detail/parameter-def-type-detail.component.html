@@ -1,0 +1,42 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="parameterDefType">
+      <h2 data-cy="parameterDefTypeDetailsHeading"><span jhiTranslate="myApp.parameterDefType.detail.title">Parameter Def Type</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ parameterDefType.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="myApp.parameterDefType.fieldName">Field Name</span></dt>
+        <dd>
+          <span>{{ parameterDefType.fieldName }}</span>
+        </dd>
+        <dt><span jhiTranslate="myApp.parameterDefType.label">Label</span></dt>
+        <dd>
+          <span>{{ parameterDefType.label }}</span>
+        </dd>
+        <dt><span jhiTranslate="myApp.parameterDefType.parameterGroupEnum">Parameter Group Enum</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'myApp.ParameterGroupEnum.' + parameterDefType.parameterGroupEnum }}">{{
+            parameterDefType.parameterGroupEnum
+          }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/parameter-def-type', parameterDefType.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

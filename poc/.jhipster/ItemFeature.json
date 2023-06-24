@@ -1,0 +1,43 @@
+{
+  "applications": ["myApp"],
+  "changelogDate": "20230624214934",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "item_feature",
+  "fields": [
+    {
+      "fieldName": "featureName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "featureLabel",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "ItemFeature",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "parameter",
+      "otherEntityRelationshipName": "itemFeature",
+      "relationshipName": "parameter",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "eligibilityCondition",
+      "otherEntityRelationshipName": "itemFeature",
+      "relationshipName": "eligibilityCondition",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "productRepositoryItem",
+      "otherEntityRelationshipName": "itemFeature",
+      "relationshipName": "productRepositoryItem",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "no"
+}

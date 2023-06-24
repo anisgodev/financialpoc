@@ -1,0 +1,33 @@
+{
+  "applications": ["myApp"],
+  "changelogDate": "20230624214534",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "condition",
+  "fields": [
+    {
+      "fieldName": "operator",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Condition",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "parameter",
+      "otherEntityRelationshipName": "condition",
+      "relationshipName": "parameter",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "eligibilityCondition",
+      "otherEntityRelationshipName": "condition",
+      "relationshipName": "eligibilityCondition",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "no"
+}

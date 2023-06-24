@@ -1,0 +1,9 @@
+{
+  "myApp": {
+    "ApplyLevelEnum": {
+      "null": "",
+      "ITEM": "ITEM",
+      "FEATURE": "FEATURE"
+    }
+  }
+}

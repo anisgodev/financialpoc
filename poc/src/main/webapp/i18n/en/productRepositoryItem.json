@@ -1,0 +1,30 @@
+{
+  "myApp": {
+    "productRepositoryItem": {
+      "home": {
+        "title": "Product Repository Items",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Product Repository Item",
+        "createOrEditLabel": "Create or edit a Product Repository Item",
+        "notFound": "No Product Repository Items found"
+      },
+      "created": "A new Product Repository Item is created with identifier {{ param }}",
+      "updated": "A Product Repository Item is updated with identifier {{ param }}",
+      "deleted": "A Product Repository Item is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Product Repository Item {{ id }}?"
+      },
+      "detail": {
+        "title": "Product Repository Item"
+      },
+      "id": "ID",
+      "name": "Name",
+      "description": "Description",
+      "productItemCategoryEnum": "Product Item Category Enum",
+      "itemStage": "Item Stage",
+      "eligibilityCondition": "Eligibility Condition",
+      "itemFeature": "Item Feature",
+      "productItemType": "Product Item Type"
+    }
+  }
+}

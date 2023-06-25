@@ -10,7 +10,7 @@ export type HealthKey =
   | 'ping'
   | 'livenessState'
   | 'readinessState'
-  | 'mongo';
+  | 'db';
 
 export interface Health {
   status: HealthStatus;

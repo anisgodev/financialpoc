@@ -22,7 +22,7 @@
       "livenessState": "Liveness state",
       "readinessState": "Readiness state",
       "ping": "Application",
-      "mongo": "MongoDB"
+      "r2dbc": "Database"
     },
     "table": {
       "service": "Service name",

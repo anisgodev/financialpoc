@@ -18,7 +18,6 @@ import com.bnppf.alphacredit.creditproductdesigner.web.rest.vm.ManagedUserVM;
 import java.time.Instant;
 import java.util.*;
 import org.apache.commons.lang3.RandomStringUtils;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.reactive.AutoConfigureWebTestClient;
@@ -52,11 +51,6 @@ class AccountResourceIT {
 
     @Autowired
     private WebTestClient accountWebTestClient;
-
-    @BeforeEach
-    public void setup() {
-        userRepository.deleteAll().block();
-    }
 
     @Test
     @WithUnauthenticatedMockUser
@@ -445,7 +439,7 @@ class AccountResourceIT {
             .expectStatus()
             .isCreated();
 
-        Optional<User> userDup = userRepository.findOneByLogin("badguy").blockOptional();
+        Optional<User> userDup = userRepository.findOneWithAuthoritiesByLogin("badguy").blockOptional();
         assertThat(userDup).isPresent();
         assertThat(userDup.get().getAuthorities())
             .hasSize(1)
@@ -461,6 +455,7 @@ class AccountResourceIT {
         user.setPassword(RandomStringUtils.randomAlphanumeric(60));
         user.setActivated(false);
         user.setActivationKey(activationKey);
+        user.setCreatedBy(Constants.SYSTEM);
 
         userRepository.save(user).block();
 
@@ -488,6 +483,7 @@ class AccountResourceIT {
         user.setEmail("save-account@example.com");
         user.setPassword(RandomStringUtils.randomAlphanumeric(60));
         user.setActivated(true);
+        user.setCreatedBy(Constants.SYSTEM);
         userRepository.save(user).block();
 
         AdminUserDTO userDTO = new AdminUserDTO();
@@ -509,7 +505,7 @@ class AccountResourceIT {
             .expectStatus()
             .isOk();
 
-        User updatedUser = userRepository.findOneByLogin(user.getLogin()).block();
+        User updatedUser = userRepository.findOneWithAuthoritiesByLogin(user.getLogin()).block();
         assertThat(updatedUser.getFirstName()).isEqualTo(userDTO.getFirstName());
         assertThat(updatedUser.getLastName()).isEqualTo(userDTO.getLastName());
         assertThat(updatedUser.getEmail()).isEqualTo(userDTO.getEmail());
@@ -528,6 +524,7 @@ class AccountResourceIT {
         user.setEmail("save-invalid-email@example.com");
         user.setPassword(RandomStringUtils.randomAlphanumeric(60));
         user.setActivated(true);
+        user.setCreatedBy(Constants.SYSTEM);
 
         userRepository.save(user).block();
 
@@ -561,6 +558,7 @@ class AccountResourceIT {
         user.setEmail("save-existing-email@example.com");
         user.setPassword(RandomStringUtils.randomAlphanumeric(60));
         user.setActivated(true);
+        user.setCreatedBy(Constants.SYSTEM);
         userRepository.save(user).block();
 
         User anotherUser = new User();
@@ -568,6 +566,7 @@ class AccountResourceIT {
         anotherUser.setEmail("save-existing-email2@example.com");
         anotherUser.setPassword(RandomStringUtils.randomAlphanumeric(60));
         anotherUser.setActivated(true);
+        anotherUser.setCreatedBy(Constants.SYSTEM);
 
         userRepository.save(anotherUser).block();
 
@@ -602,6 +601,7 @@ class AccountResourceIT {
         user.setEmail("save-existing-email-and-login@example.com");
         user.setPassword(RandomStringUtils.randomAlphanumeric(60));
         user.setActivated(true);
+        user.setCreatedBy(Constants.SYSTEM);
         userRepository.save(user).block();
 
         AdminUserDTO userDTO = new AdminUserDTO();
@@ -635,6 +635,7 @@ class AccountResourceIT {
         user.setPassword(passwordEncoder.encode(currentPassword));
         user.setLogin("change-password-wrong-existing-password");
         user.setEmail("change-password-wrong-existing-password@example.com");
+        user.setCreatedBy(Constants.SYSTEM);
         userRepository.save(user).block();
 
         accountWebTestClient
@@ -659,6 +660,7 @@ class AccountResourceIT {
         user.setPassword(passwordEncoder.encode(currentPassword));
         user.setLogin("change-password");
         user.setEmail("change-password@example.com");
+        user.setCreatedBy(Constants.SYSTEM);
         userRepository.save(user).block();
 
         accountWebTestClient
@@ -682,6 +684,7 @@ class AccountResourceIT {
         user.setPassword(passwordEncoder.encode(currentPassword));
         user.setLogin("change-password-too-small");
         user.setEmail("change-password-too-small@example.com");
+        user.setCreatedBy(Constants.SYSTEM);
         userRepository.save(user).block();
 
         String newPassword = RandomStringUtils.random(ManagedUserVM.PASSWORD_MIN_LENGTH - 1);
@@ -707,6 +710,7 @@ class AccountResourceIT {
         user.setPassword(passwordEncoder.encode(currentPassword));
         user.setLogin("change-password-too-long");
         user.setEmail("change-password-too-long@example.com");
+        user.setCreatedBy(Constants.SYSTEM);
         userRepository.save(user).block();
 
         String newPassword = RandomStringUtils.random(ManagedUserVM.PASSWORD_MAX_LENGTH + 1);
@@ -732,6 +736,7 @@ class AccountResourceIT {
         user.setPassword(passwordEncoder.encode(currentPassword));
         user.setLogin("change-password-empty");
         user.setEmail("change-password-empty@example.com");
+        user.setCreatedBy(Constants.SYSTEM);
         userRepository.save(user).block();
 
         accountWebTestClient
@@ -755,6 +760,7 @@ class AccountResourceIT {
         user.setLogin("password-reset");
         user.setEmail("password-reset@example.com");
         user.setLangKey("en");
+        user.setCreatedBy(Constants.SYSTEM);
         userRepository.save(user).block();
 
         accountWebTestClient
@@ -774,6 +780,7 @@ class AccountResourceIT {
         user.setLogin("password-reset-upper-case");
         user.setEmail("password-reset-upper-case@example.com");
         user.setLangKey("en");
+        user.setCreatedBy(Constants.SYSTEM);
         userRepository.save(user).block();
 
         accountWebTestClient
@@ -804,6 +811,7 @@ class AccountResourceIT {
         user.setEmail("finish-password-reset@example.com");
         user.setResetDate(Instant.now().plusSeconds(60));
         user.setResetKey("reset key");
+        user.setCreatedBy(Constants.SYSTEM);
         userRepository.save(user).block();
 
         KeyAndPasswordVM keyAndPassword = new KeyAndPasswordVM();
@@ -831,6 +839,7 @@ class AccountResourceIT {
         user.setEmail("finish-password-reset-too-small@example.com");
         user.setResetDate(Instant.now().plusSeconds(60));
         user.setResetKey("reset key too small");
+        user.setCreatedBy(Constants.SYSTEM);
         userRepository.save(user).block();
 
         KeyAndPasswordVM keyAndPassword = new KeyAndPasswordVM();

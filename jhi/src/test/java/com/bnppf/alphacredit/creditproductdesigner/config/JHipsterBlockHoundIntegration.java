@@ -16,5 +16,6 @@ public class JHipsterBlockHoundIntegration implements BlockHoundIntegration {
             "com.bnppf.alphacredit.creditproductdesigner.security.DomainUserDetailsService",
             "createSpringSecurityUser"
         );
+        builder.allowBlockingCallsInside("io.r2dbc.mssql.client.ssl.TdsSslHandler", "createSslHandler");
     }
 }

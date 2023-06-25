@@ -24,7 +24,7 @@ describe('User Management Update Component', () => {
         {
           provide: ActivatedRoute,
           useValue: {
-            data: of({ user: new User('ABC', 'user', 'first', 'last', 'first@last.com', true, 'en', [Authority.USER], 'admin') }),
+            data: of({ user: new User(123, 'user', 'first', 'last', 'first@last.com', true, 'en', [Authority.USER], 'admin') }),
           },
         },
       ],
@@ -61,7 +61,7 @@ describe('User Management Update Component', () => {
       [],
       fakeAsync(() => {
         // GIVEN
-        const entity = { id: 'ABC' };
+        const entity = { id: 123 };
         jest.spyOn(service, 'update').mockReturnValue(of(entity));
         comp.editForm.patchValue(entity);
         // WHEN

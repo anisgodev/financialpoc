@@ -1,1 +1,0 @@
-org.springframework.test.context.ContextCustomizerFactory = com.tnbeit.cloud.gateway.backend.config.TestContainersSpringContextCustomizerFactory

@@ -1,6 +1,7 @@
 package com.bnppf.alphacredit.creditproductdesigner.web.rest;
 
 import com.bnppf.alphacredit.creditproductdesigner.IntegrationTest;
+import com.bnppf.alphacredit.creditproductdesigner.config.Constants;
 import com.bnppf.alphacredit.creditproductdesigner.domain.User;
 import com.bnppf.alphacredit.creditproductdesigner.repository.UserRepository;
 import com.bnppf.alphacredit.creditproductdesigner.web.rest.vm.LoginVM;
@@ -34,6 +35,7 @@ class UserJWTControllerIT {
         user.setEmail("user-jwt-controller@example.com");
         user.setActivated(true);
         user.setPassword(passwordEncoder.encode("test"));
+        user.setCreatedBy(Constants.SYSTEM);
 
         userRepository.save(user).block();
 
@@ -62,6 +64,7 @@ class UserJWTControllerIT {
         user.setEmail("user-jwt-controller-remember-me@example.com");
         user.setActivated(true);
         user.setPassword(passwordEncoder.encode("test"));
+        user.setCreatedBy(Constants.SYSTEM);
 
         userRepository.save(user).block();
 

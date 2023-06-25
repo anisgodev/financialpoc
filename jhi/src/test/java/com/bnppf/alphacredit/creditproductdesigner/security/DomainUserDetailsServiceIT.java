@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 import com.bnppf.alphacredit.creditproductdesigner.IntegrationTest;
+import com.bnppf.alphacredit.creditproductdesigner.config.Constants;
 import com.bnppf.alphacredit.creditproductdesigner.domain.User;
 import com.bnppf.alphacredit.creditproductdesigner.repository.UserRepository;
 import java.util.Locale;
@@ -37,6 +38,7 @@ class DomainUserDetailsServiceIT {
 
     @BeforeEach
     public void init() {
+        userRepository.deleteAllUserAuthorities().block();
         userRepository.deleteAll().block();
 
         User userOne = new User();
@@ -47,6 +49,7 @@ class DomainUserDetailsServiceIT {
         userOne.setFirstName("userOne");
         userOne.setLastName("doe");
         userOne.setLangKey("en");
+        userOne.setCreatedBy(Constants.SYSTEM);
         userRepository.save(userOne).block();
 
         User userTwo = new User();
@@ -57,6 +60,7 @@ class DomainUserDetailsServiceIT {
         userTwo.setFirstName("userTwo");
         userTwo.setLastName("doe");
         userTwo.setLangKey("en");
+        userTwo.setCreatedBy(Constants.SYSTEM);
         userRepository.save(userTwo).block();
 
         User userThree = new User();
@@ -67,6 +71,7 @@ class DomainUserDetailsServiceIT {
         userThree.setFirstName("userThree");
         userThree.setLastName("doe");
         userThree.setLangKey("en");
+        userThree.setCreatedBy(Constants.SYSTEM);
         userRepository.save(userThree).block();
     }
 

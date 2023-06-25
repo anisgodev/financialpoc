@@ -9,21 +9,29 @@ services:
       - MANAGEMENT_METRICS_EXPORT_PROMETHEUS_ENABLED=true
       - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://admin:$${jhipster.registry.password}@jhipster-registry:8761/eureka
       - SPRING_CLOUD_CONFIG_URI=http://admin:$${jhipster.registry.password}@jhipster-registry:8761/config
-      - SPRING_DATA_MONGODB_URI=mongodb://accpdesigner-mongodb:27017/?waitQueueMultiple=1000
-      - SPRING_DATA_MONGODB_DATABASE=accpdesigner
+      - SPRING_R2DBC_URL=r2dbc:mssql://accpdesigner-mssql:1433/accpdesigner
+      - SPRING_LIQUIBASE_URL=jdbc:sqlserver://accpdesigner-mssql:1433;database=accpdesigner;encrypt=false
       - JHIPSTER_SLEEP=60 # gives time for microservices to boot before the gateway, the entire stack will be ready to accept incoming requests.
     # If you want to expose these ports outside your dev PC,
     # remove the "127.0.0.1:" prefix
     ports:
       - 127.0.0.1:8080:8080
-  accpdesigner-mongodb:
-    image: mongo:4.4.15
+  accpdesigner-mssql:
+    image: mcr.microsoft.com/mssql/server:2019-CU16-GDR1-ubuntu-20.04
+    # volumes are not supported on macOS
+    # volumes:
+    #   - ~/volumes/jhipster/tempdb/mssql/:/var/opt/mssql/data/
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_PID=Express
+      - SA_PASSWORD=yourStrong(!)Password
+      - MSSQL_DATABASE=accpdesigner
+      - MSSQL_SLEEP=60
     # If you want to expose these ports outside your dev PC,
     # remove the "127.0.0.1:" prefix
     ports:
-      - 127.0.0.1:27017:27017
-    # volumes:
-    #   - ~/volumes/jhipster/accpdesigner/mongodb/:/data/db/
+      - 127.0.0.1:1433:1433
+    command: /bin/bash -c '/opt/mssql/bin/sqlservr & echo "wait $$MSSQL_SLEEP sec for DB to start "; sleep $$MSSQL_SLEEP; /opt/mssql-tools/bin/sqlcmd -U sa -P $$SA_PASSWORD -d tempdb -q "EXIT(CREATE DATABASE $$MSSQL_DATABASE)"; wait;'
   jhipster-registry:
     image: jhipster/jhipster-registry:v7.3.0
     volumes:

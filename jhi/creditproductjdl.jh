@@ -3,8 +3,9 @@ application {
     applicationType gateway
     baseName accpdesigner
     packageName com.bnppf.alphacredit.creditproductdesigner
-    databaseType mongodb
-    prodDatabaseType mongodb
+    databaseType sql
+    devDatabaseType h2Disk
+    prodDatabaseType mssql
     buildTool maven
   }
   entities *

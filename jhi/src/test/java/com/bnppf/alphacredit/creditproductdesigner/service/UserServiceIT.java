@@ -8,6 +8,8 @@ import com.bnppf.alphacredit.creditproductdesigner.domain.User;
 import com.bnppf.alphacredit.creditproductdesigner.repository.UserRepository;
 import com.bnppf.alphacredit.creditproductdesigner.service.dto.AdminUserDTO;
 import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Optional;
@@ -46,6 +48,7 @@ class UserServiceIT {
 
     @BeforeEach
     public void init() {
+        userRepository.deleteAllUserAuthorities().block();
         userRepository.deleteAll().block();
         user = new User();
         user.setLogin(DEFAULT_LOGIN);
@@ -56,6 +59,7 @@ class UserServiceIT {
         user.setLastName(DEFAULT_LASTNAME);
         user.setImageUrl(DEFAULT_IMAGEURL);
         user.setLangKey(DEFAULT_LANGKEY);
+        user.setCreatedBy(Constants.SYSTEM);
     }
 
     @Test
@@ -135,7 +139,7 @@ class UserServiceIT {
         User dbUser = userRepository.save(user).block();
         dbUser.setCreatedDate(now.minus(4, ChronoUnit.DAYS));
         userRepository.save(user).block();
-        Instant threeDaysAgo = now.minus(3, ChronoUnit.DAYS);
+        LocalDateTime threeDaysAgo = LocalDateTime.ofInstant(now.minus(3, ChronoUnit.DAYS), ZoneOffset.UTC);
         List<User> users = userRepository
             .findAllByActivatedIsFalseAndActivationKeyIsNotNullAndCreatedDateBefore(threeDaysAgo)
             .collectList()
@@ -153,7 +157,7 @@ class UserServiceIT {
         User dbUser = userRepository.save(user).block();
         dbUser.setCreatedDate(now.minus(4, ChronoUnit.DAYS));
         userRepository.save(user).block();
-        Instant threeDaysAgo = now.minus(3, ChronoUnit.DAYS);
+        LocalDateTime threeDaysAgo = LocalDateTime.ofInstant(now.minus(3, ChronoUnit.DAYS), ZoneOffset.UTC);
         List<User> users = userRepository
             .findAllByActivatedIsFalseAndActivationKeyIsNotNullAndCreatedDateBefore(threeDaysAgo)
             .collectList()
